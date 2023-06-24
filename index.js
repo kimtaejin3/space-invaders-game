@@ -11,6 +11,8 @@ class Player {
             y: 0,
         };
 
+        this.rotation = 0;
+
         const image = new Image();
         image.src = "./assets/spaceship.png";
 
@@ -27,27 +29,92 @@ class Player {
     }
 
     draw() {
-        // c.fillStyle = "red";
-        // c.fillRect(this.position.x, this.position.y, this.width, this.height);
+        c.save();
+        // c.translate(
+        //     player.position.x + player.width / 2,
+        //     player.position.y + player.height / 2
+        // );
+        c.rotate(this.rotation);
+        // c.translate(
+        //     -player.position.x - player.width / 2,
+        //     -player.position.y - player.height / 2
+        // );
+        c.drawImage(
+            this.image,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        );
+        c.restore();
+    }
+
+    update() {
         if (this.image) {
-            c.drawImage(
-                this.image,
-                this.position.x,
-                this.position.y,
-                this.width,
-                this.height
-            );
+            this.draw();
+            this.position.x += this.velocity.x;
         }
     }
 }
 
 const player = new Player();
+const keys = {
+    a: {
+        pressed: false,
+    },
+    d: {
+        pressed: false,
+    },
+    space: {
+        pressed: false,
+    },
+};
 
 function animate() {
     requestAnimationFrame(animate);
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
-    player.draw();
+    player.update();
+
+    if (keys.a.pressed && player.position.x >= 0) {
+        player.velocity.x = -8;
+        player.rotation = -0.15;
+    } else if (
+        keys.d.pressed &&
+        player.position.x + player.width <= canvas.width
+    ) {
+        player.velocity.x = 8;
+        player.rotation = 0.15;
+    } else {
+        player.velocity.x = 0;
+        player.rotation = 0;
+    }
 }
 
 animate();
+
+addEventListener("keydown", ({ key }) => {
+    switch (key) {
+        case "a":
+            keys.a.pressed = true;
+            break;
+        case "d":
+            keys.d.pressed = true;
+            break;
+        case " ":
+            keys.space.pressed = true;
+    }
+});
+
+addEventListener("keyup", ({ key }) => {
+    switch (key) {
+        case "a":
+            keys.a.pressed = false;
+            break;
+        case "d":
+            keys.d.pressed = false;
+            break;
+        case " ":
+            keys.space.pressed = false;
+    }
+});

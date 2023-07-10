@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Space invaders</title>
-        <style>
-            body {
-                margin: 0;
-                background-color: #000;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space invaders</title>
+    <style>
+      body {
+        margin: 0;
+      }
 
-            canvas {
-                display: block;
-                margin: 0 auto;
-            }
-        </style>
-    </head>
-    <body>
-        <canvas></canvas>
-        <script src="./index.js"></script>
-    </body>
+      canvas {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <p style="position: fixed; z-index: 1; color: white; left: 20px">
+      <span>Score:</span> <span id="scoreEl">0</span>
+    </p>
+    <canvas></canvas>
+    <script src="./index.js"></script>
+  </body>
 </html>

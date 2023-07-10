@@ -1,5 +1,6 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
+const scoreEl = document.querySelector("#scoreEl");
 
 canvas.width = innerWidth - 20;
 canvas.height = innerHeight - 10;
@@ -261,6 +262,8 @@ let game = {
   active: true,
 };
 
+let score = 0;
+
 for (let i = 0; i < 100; i++) {
   particles.push(
     new Particle({
@@ -389,6 +392,8 @@ function animate() {
               (projectile2) => projectile2 === projectile
             );
             if (invaderFound && projectileFound) {
+              score += 100;
+              scoreEl.innerHTML = score;
               createParticles({ object: invader, color: "#baa0de" });
               grid.invaders.splice(i, 1);
               projectiles.splice(j, 1);

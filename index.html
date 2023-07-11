@@ -7,19 +7,20 @@
     <style>
       body {
         margin: 0;
-      }
-
-      canvas {
-        display: block;
-        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
       }
     </style>
   </head>
   <body>
-    <p style="position: fixed; z-index: 1; color: white; left: 20px">
-      <span>Score:</span> <span id="scoreEl">0</span>
-    </p>
-    <canvas></canvas>
+    <div style="position: relative; z-index: -1">
+      <p style="position: absolute; z-index: 1; color: white; left: 10px">
+        <span>Score:</span> <span id="scoreEl">0</span>
+      </p>
+      <canvas> </canvas>
+    </div>
     <script src="./index.js"></script>
   </body>
 </html>

@@ -2,8 +2,8 @@ const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 const scoreEl = document.querySelector("#scoreEl");
 
-canvas.width = innerWidth - 20;
-canvas.height = innerHeight - 10;
+canvas.width = 1024;
+canvas.height = 576;
 
 class Player {
   constructor() {
@@ -365,7 +365,7 @@ function animate() {
   grids.forEach((grid) => {
     grid.update();
 
-    if (frames % 100 === 0 && grid.invaders.length > 0) {
+    if (frames % 50 === 0 && grid.invaders.length > 0) {
       grid.invaders[Math.floor(Math.random() * grid.invaders.length)].shoot(
         InvaderProjectiles
       );
